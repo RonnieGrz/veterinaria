@@ -15,6 +15,9 @@ public class Cliente {
     public static void main(String[] args) {
         Veterinaria vet = new Veterinaria();
         Scanner leer= new Scanner(System.in);
+         boolean salir=false;
+         
+        while(!salir){
         System.out.println("1. Agregar mascota");
         System.out.println("2.Ver lista de animales");
         System.out.println("3. Buscar Mascota por código:");
@@ -35,10 +38,10 @@ public class Cliente {
                 System.out.println("Digite el código de la mascota que desea buscar");
                 int codigo;
                 codigo=leer.nextInt();
-                vet.buscarCodigo(codigo);
+                System.out.println(vet.buscarCodigo(codigo));
                 break;
             case 4:
-                vet.contadorAves();
+                System.out.println("Numero de mascotas tipo ave: " + vet.contadorAves());
                 break;
             case 5:
                 System.out.println("Digite el código de la mascota que desea eliminar");
@@ -46,6 +49,15 @@ public class Cliente {
                 borrar=leer.nextInt();
                 vet.borrarMascota(borrar);
                 break;
+            case 6:
+                salir=true;
+                break;
+              
+                 default:
+                  System.out.println("opción incorrecta");
+                            
+        
+        }
         }
     }
     

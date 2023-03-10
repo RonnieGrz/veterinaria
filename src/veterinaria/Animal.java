@@ -10,7 +10,7 @@ package veterinaria;
  */
 public class Animal {
     int codigo;
-    String tipo;
+    int tipo;
     String nombreMascota;
 
     public int getCodigo() {
@@ -21,12 +21,17 @@ public class Animal {
         this.codigo = codigo;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(int tipo) {
+        if(tipo <= 3){
+        this.tipo = tipo;    
+        }else{
+            throw new IllegalArgumentException("No existe un tipo de animal con ese valor");
+        }
+        
     }
 
     public String getNombreMascota() {
@@ -37,7 +42,7 @@ public class Animal {
         this.nombreMascota = nombreMascota;
     }
 
-    public Animal(int codigo, String tipo, String nombreMascota) {
+    public Animal(int codigo, int tipo, String nombreMascota) {
         this.codigo = codigo;
         this.tipo = tipo;
         this.nombreMascota = nombreMascota;
