@@ -5,20 +5,45 @@
 package veterinaria;
 
 import java.util.ArrayList;
-
+import java.util.Scanner;
 /**
  *
  * @author ronald.gutierrez_ama
  */
 public class Veterinaria {
 
-       ArrayList clientes = new ArrayList<Cliente>();
+       ArrayList mascotas;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public Veterinaria() {
+        mascotas=new ArrayList<Animal>();
     }
+
+ 
+       public void anadirMascota(){
+           Animal animal= new Animal();
+           Scanner leer= new Scanner(System.in);
+           System.out.println("Nombre mascota:");
+           animal.setNombreMascota(leer.nextLine());
+           System.out.println("Tipo:");
+           animal.setTipo(leer.nextLine());
+           System.out.println("Código de la mascota:");
+           animal.setCodigo(leer.nextInt());
+           this.mascotas.add(animal);
+       }
+       
+       public void mostrarMascota(){
+           mostrarMascota(mascotas, mascotas.size());
+           
+       }
+       public void mostrarMascota(ArrayList mascotas,int tamano){
+           if(tamano!=0){
+               System.out.println(mascotas.get(tamano));
+               mostrarMascota(mascotas, tamano--);
+           }
+       }
+       
+       public void buscarCodigo(int codigo){
+         //  mascotas.get(codigo).get;
+       }
     
 }
