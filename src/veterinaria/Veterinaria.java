@@ -5,6 +5,7 @@
 package veterinaria;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -12,10 +13,10 @@ import java.util.Scanner;
  */
 public class Veterinaria {
 
-       ArrayList mascotas;
+       List<Animal> mascotas = new ArrayList<>();
 
     public Veterinaria() {
-        mascotas=new ArrayList<Animal>();
+        //mascotas = new ArrayList<Animal>();
     }
 
  
@@ -35,15 +36,48 @@ public class Veterinaria {
            mostrarMascota(mascotas, mascotas.size());
            
        }
-       public void mostrarMascota(ArrayList mascotas,int tamano){
+       public void mostrarMascota(List mascotas, int tamano){
            if(tamano!=0){
                System.out.println(mascotas.get(tamano));
                mostrarMascota(mascotas, tamano--);
            }
        }
        
-       public void buscarCodigo(int codigo){
-         //  mascotas.get(codigo).get;
+       public Animal buscarCodigo(int codigo){
+           return buscarCodigo(codigo, mascotas.size(), false);
+       }
+       
+       public Animal buscarCodigo(int codigo, int tamano, boolean existe){
+           Animal mascota = null;
+           if(tamano!=0 && !existe){
+               if(codigo == mascotas.get(tamano).getCodigo()){
+                   existe = true;
+                   mascota = mascotas.get(tamano);
+               }else{
+                   buscarCodigo(codigo, tamano--, false);
+               }
+           }
+           return mascota;
+       }
+       
+       public int contadorAves(){
+           int tamano = mascotas.size();
+           return contadorAves(tamano, 0);
+       }
+       
+       public int contadorAves(int tamano, int suma){
+           if(tamano!=0){
+               if("Ave".equals(mascotas.get(tamano).getTipo())){
+                   suma++;
+               }else{
+                   contadorAves(tamano--, suma);
+               }
+           }
+           return suma;
+       }
+       
+       public void borrarMascota(int codigo){
+           mascotas.remove(mascotas.indexOf(buscarCodigo(codigo)));
        }
     
 }
