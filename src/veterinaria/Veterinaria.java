@@ -101,13 +101,15 @@ public class Veterinaria {
         if (tamano < 0) {
             System.out.println("No existen mascotas registradas");
         }
-        return contadorAves(tamano, 0);
+        int suma = contadorAves(tamano, 0);
+        return suma;
     }
 
     public int contadorAves(int tamano, int suma) {
-        if (tamano != 0) {
+        if (tamano >= 0) {
             if (mascotas.get(tamano).getTipo() == 3) {
-                suma++;
+                suma = suma+1 ;
+                contadorAves(tamano-1, suma);
             } else {
                 contadorAves(tamano-1, suma);
             }

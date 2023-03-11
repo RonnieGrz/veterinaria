@@ -22,7 +22,7 @@ public class Cliente {
 
         File f = new File("mascotas.txt");
         if (f.exists() && !f.isDirectory()) {
-           archivo.cargarArchivo("mascotas.txt", vet);
+            archivo.cargarArchivo("mascotas.txt", vet);
         }
 
         while (!salir) {
@@ -48,7 +48,12 @@ public class Cliente {
                     System.out.println(vet.buscarCodigo(codigo));
                     break;
                 case 4:
-                    System.out.println("Numero de mascotas tipo ave: " + vet.contadorAves());
+                    int tamano = vet.mascotas.size() - 1;
+                    if (tamano < 0) {
+                        System.out.println("No existen mascotas registradas");
+                    }
+                    int suma = vet.contadorAves(tamano, 0);
+                    System.out.println("Numero de mascotas tipo ave: " + suma);
                     break;
                 case 5:
                     System.out.println("Digite el código de la mascota que desea eliminar");
