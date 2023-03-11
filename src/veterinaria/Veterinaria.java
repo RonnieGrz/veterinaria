@@ -4,6 +4,8 @@
  */
 package veterinaria;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,13 +16,13 @@ import java.util.Scanner;
  */
 public class Veterinaria {
 
-    List<Animal> mascotas = new ArrayList<>();
+    List<Animal> mascotas;
 
     public Veterinaria() {
-        //mascotas = new ArrayList<Animal>();
+        mascotas = new ArrayList<>();
     }
 
-    public void anadirMascota() {
+    public void anadirMascota(Archivo archivo) throws IOException {
         Animal animal = new Animal();
         int tipo, codigo;
         Scanner leer = new Scanner(System.in);
@@ -54,6 +56,11 @@ public class Veterinaria {
         }
         animal.setCodigo(codigo);
         this.mascotas.add(animal);
+        String cadena = animal.getCodigo()  + "," + animal.getNombreMascota() +","+ animal.getTipo();
+        archivo.guardarEnArchivo("mascotas.txt", cadena, true);
+        System.out.println("Mascota registrada exitosamente");
+
+
     }
 
     public void mostrarMascota() {
@@ -75,29 +82,15 @@ public class Veterinaria {
         }
     }
 
-    public String buscarCodigo(int codigo) {
-        return buscarCodigo(codigo, mascotas.size() - 1, false);
-    }
-
-    public String buscarCodigo(int codigo, int tamano, boolean existe) {
-        String mascota = null;
-        Animal animal;
-        if (tamano == 0) {
-            if (codigo == mascotas.get(0).getCodigo()) {
-                existe = true;
-                animal = mascotas.get(0);
-                mascota = "Mascota: \n" + animal.getCodigo() + ", "+animal.getNombreMascota() + ", " + animal.getTipo() ;
-            } else {
-                System.out.println("Codigo no registrado");
-            }
-        }
-        if (tamano != 0 && !existe) {
-            if (codigo == mascotas.get(tamano).getCodigo()) {
-                existe = true;
-                animal = mascotas.get(tamano);
-                mascota = "Mascota: \n" + animal.getCodigo() + ", "+animal.getNombreMascota() + ", " + animal.getTipo() ;
-            } else {
-                buscarCodigo(codigo, tamano--, false);
+    public Animal buscarCodigo(int codigo) {
+        Animal mascota = null;
+        for(int i = 0; i<mascotas.size(); i++){
+            int codigoAnimal = mascotas.get(i).getCodigo();
+            if(codigo == codigoAnimal){
+                mascota = mascotas.get(i);
+                break;
+            }else{
+                mascota = null;
             }
         }
         return mascota;
@@ -116,14 +109,22 @@ public class Veterinaria {
             if (mascotas.get(tamano).getTipo() == 3) {
                 suma++;
             } else {
-                contadorAves(tamano--, suma);
+                contadorAves(tamano-1, suma);
             }
         }
         return suma;
     }
 
-    public void borrarMascota(int codigo) {
-        mascotas.remove(mascotas.indexOf(buscarCodigo(codigo)));
+    public void borrarMascota(int codigo, Archivo archivo) throws IOException {
+        int posicion = mascotas.indexOf(buscarCodigo(codigo));
+        System.out.println("posicion " + posicion);
+        mascotas.remove(posicion);        
+        File f = new File("mascotas.txt");
+        f.delete();
+        for(Animal animal: mascotas){
+            String cadena = animal.getCodigo() + "," + animal.getNombreMascota() + "," + animal.getTipo();
+            archivo.guardarEnArchivo("mascotas.txt", cadena, true);
+        }
     }
 
 }
