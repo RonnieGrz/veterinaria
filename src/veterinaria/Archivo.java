@@ -39,10 +39,11 @@ public class Archivo {
     }
     
     
-    public void cargarArchivo(String nombreArchivo, Veterinaria vet) throws FileNotFoundException{
+    public static void cargarArchivo(String nombreArchivo, Veterinaria vet) throws FileNotFoundException{
         
         File archivo = new File(nombreArchivo);
         Scanner cargarArchivo = new Scanner(archivo);
+        vet.mascotas.clear();
         
         while(cargarArchivo.hasNextLine()){
             String linea =  cargarArchivo.nextLine();

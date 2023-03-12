@@ -1,2 +1,7 @@
 21,pio pio,3
 23,pao pao,3
+123,Dante,2
+243,pio pao,3
+0,Dante,1
+5,Frida,2
+6,Piaf,3
