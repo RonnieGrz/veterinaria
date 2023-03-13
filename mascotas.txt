@@ -1,11 +1,9 @@
-21,pio pio,3
-23,pao pao,3
 123,Dante,2
 243,pio pao,3
-0,Dante,1
 5,Frida,2
 6,Piaf,3
 23,Piaf,1
-0,Fia,1
-0,Fia,1
 45,pollo,3
+1212,Rocky,1
+777,Ester,3
+333,tiana,3
