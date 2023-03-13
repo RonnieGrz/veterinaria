@@ -36,7 +36,7 @@ public class Cliente {
 
             switch (op) {
                 case 1:
-                    vet.anadirMascota(archivo);
+                    //vet.anadirMascota(Animal, archivo);
                     break;
                 case 2:
                     vet.mostrarMascota();

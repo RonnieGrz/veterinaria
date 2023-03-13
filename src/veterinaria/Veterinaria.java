@@ -22,45 +22,10 @@ public class Veterinaria {
         mascotas = new ArrayList<>();
     }
 
-    public void anadirMascota(Archivo archivo) throws IOException {
-        Animal animal = new Animal();
-        int tipo, codigo;
-        Scanner leer = new Scanner(System.in);
-        System.out.println("Nombre mascota:");
-        animal.setNombreMascota(leer.nextLine());
-        
-        System.out.println("Tipo:");
-        System.out.println("1. Canino");
-        System.out.println("2. Felino");
-        System.out.println("3. Ave");
-        tipo = leer.nextInt();
-
-        while (tipo > 3) {
-            System.out.println("Tipo de animal no valido");
-            System.out.println("Seleccione un tipo de animal valido:");
-            System.out.println("1. Canino");
-            System.out.println("2. Felino");
-            System.out.println("3. Ave");
-            tipo=leer.nextInt();
-        }
-        animal.setTipo(tipo);
-        
-        
-        System.out.println("Código de la mascota:");
-        codigo = leer.nextInt();
-        
-        while(codigo<0){
-            System.out.println("El codigo no puede ser un numero negativo");
-            System.out.println("Digite un valor de codigo valido");
-            codigo = leer.nextInt();
-        }
-        animal.setCodigo(codigo);
+    public void anadirMascota(Animal animal, Archivo archivo) throws IOException {
         this.mascotas.add(animal);
         String cadena = animal.getCodigo()  + "," + animal.getNombreMascota() +","+ animal.getTipo();
         archivo.guardarEnArchivo("mascotas.txt", cadena, true);
-        System.out.println("Mascota registrada exitosamente");
-
-
     }
 
     public void mostrarMascota() {

@@ -5,3 +5,6 @@
 0,Dante,1
 5,Frida,2
 6,Piaf,3
+23,Piaf,1
+0,Fia,1
+0,Fia,1
