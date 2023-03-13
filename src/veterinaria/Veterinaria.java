@@ -83,7 +83,6 @@ public class Veterinaria {
 
     public void borrarMascota(int codigo, Archivo archivo) throws IOException {
         int posicion = mascotas.indexOf(buscarCodigo(codigo));
-        System.out.println("posicion " + posicion);
         mascotas.remove(posicion);        
         File f = new File("mascotas.txt");
         f.delete();

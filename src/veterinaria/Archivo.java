@@ -54,8 +54,7 @@ public class Archivo {
             mascota.setNombreMascota(datos[1]);
             mascota.setTipo(Integer.parseInt(datos[2]));
             vet.mascotas.add(mascota);
-        }
-        
+        }       
         cargarArchivo.close();
     }
     
